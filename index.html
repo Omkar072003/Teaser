@@ -14,7 +14,6 @@
             flex-direction: column;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
         .video-background {
             position: fixed;
@@ -44,9 +43,8 @@
         }
         .header h1 {
             font-size: 36px; /* Increased size */
-            font-weight: bold; /* Ensure it remains bold */
+            font-weight: bold; /* Make it bold */
             margin: 0; /* Ensure no extra spacing */
-            letter-spacing: 2px; /* Add slight spacing between letters for a modern look */
         }
         .content {
             flex: 1;
@@ -72,7 +70,6 @@
             padding: 40px 20px;
             font-size: 20px;
             font-weight: 400;
-            position: relative; /* For potential future absolute positioning */
             z-index: 1;
         }
         .footer p {
@@ -83,24 +80,18 @@
             color: #cccccc;
             text-align: left; /* Align copyright to the left */
         }
-        /* Style for the music symbol */
-        .music-symbol {
-            position: fixed; /* Hover over video and viewport */
-            right: 20px; /* Right side alignment */
-            bottom: 20px; /* Above footer, hovering over video */
-            font-size: 40px;
-            color: #ffffff;
-            cursor: pointer;
-            z-index: 3; /* Higher than video and footer */
-            transition: color 0.3s ease, transform 0.3s ease;
+        /* Style for the audio controls button */
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
         }
-        .music-symbol:hover {
-            color: #00ff00; /* Green on hover, inspired by WhatsApp button */
-            transform: scale(1.2); /* Slight scale effect on hover */
-        }
-        /* Hide default audio controls */
-        audio {
-            display: none;
+        .audio-controls audio {
+            width: 150px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -120,30 +111,12 @@
         <h1>Keep Watching This Space</h1>
         <h4 class="copyright">Copyright © 2025 Intelliwise Academy - All Rights Reserved.</h4>
     </div>
-    <!-- Audio element (hidden, controlled by symbol) -->
-    <audio id="background-audio">
-        <source src="teaser_audio(Final).mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <!-- Music symbol to toggle audio -->
-    <div class="music-symbol" onclick="toggleAudio()">♪</div>
-
-    <script>
-        const audio = document.getElementById('background-audio');
-        let isPlaying = false;
-        const musicSymbol = document.querySelector('.music-symbol');
-
-        function toggleAudio() {
-            if (isPlaying) {
-                audio.pause();
-                musicSymbol.textContent = '♪'; // Show off symbol
-                isPlaying = false;
-            } else {
-                audio.play();
-                musicSymbol.textContent = '►'; // Show on symbol
-                isPlaying = true;
-            }
-        }
-    </script>
+    <!-- Audio controls as a floating button -->
+    <div class="audio-controls">
+        <audio controls>
+            <source src="teaser_audio(Final).mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
 </body>
 </html>
