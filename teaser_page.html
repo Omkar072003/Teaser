@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelliwise Academy - Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      background: #0a0a23; /* Fallback background color */
+    }
+
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+      display: block;
+    }
+
+    .bg-fallback {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #1a2a6c, #0d1b3e); /* Fallback gradient */
+      z-index: -2;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .content {
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .content h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .content h1 span.highlight {
+      background: linear-gradient(45deg, #00c4cc, #00e1a2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .content p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .content p span.highlight {
+      background: linear-gradient(45deg, #00c4cc, #00e1a2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 500;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500;
+      background: rgba(10, 20, 60, 0.8);
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .countdown span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+    }
+
+    .countdown span::after {
+      content: attr(data-label);
+      font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+      opacity: 0.7;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .notify-btn {
+      background: linear-gradient(45deg, #00c4cc, #00e1a2);
+      color: #0a1a3c;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 196, 204, 0.5);
+    }
+
+    .notify-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 196, 204, 0.6);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+      }
+
+      .countdown {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .countdown span {
+        min-width: 50px;
+      }
+
+      .bg-video {
+        display: none; /* Use fallback on mobile for performance */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content {
+        padding: 1rem;
+      }
+
+      .notify-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .countdown {
+        font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-container">
+    <video autoplay muted loop class="bg-video" id="bgVideo">
+      <source src="teaser.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="bg-fallback"></div>
+  </div>
+
+  <div class="overlay">
+    <div class="content">
+      <h1>Welcome to <span class="highlight">Intelliwise</span> <span>Academy</span></h1>
+      <p>Empowering the future with <span class="highlight">smart education solutions</span>. Get ready for an innovative learning experience!</p>
+      <div class="countdown" id="countdown">
+        <span id="days" data-label="Days">00</span>
+        <span id="hours" data-label="Hours">00</span>
+        <span id="minutes" data-label="Minutes">00</span>
+        <span id="seconds" data-label="Seconds">00</span>
+      </div>
+      <button class="notify-btn" onclick="alert('Notifications coming soon!')">Notify Me</button>
+    </div>
+  </div>
+
+  <script>
+    // Countdown Logic
+    const launchDate = new Date("2025-06-01T00:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const timeLeft = launchDate - now;
+
+      if (timeLeft < 0) {
+        clearInterval(interval);
+        document.getElementById("countdown").innerHTML = '<span>We Are Live!</span>';
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    };
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Video Error Handling
+    const video = document.getElementById('bgVideo');
+    video.addEventListener('error', () => {
+      console.error('Video failed to load. Check file path or format.');
+      video.style.display = 'none'; // Hide video if it fails
+    });
+
+    video.addEventListener('loadeddata', () => {
+      console.log('Video loaded successfully');
+      video.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
