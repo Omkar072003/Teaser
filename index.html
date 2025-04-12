@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelliwise Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for text readability */
+            z-index: -1;
+        }
+        .header {
+            padding: 20px;
+            color: #ffffff;
+            text-align: center; /* Center the header text */
+            position: relative;
+            z-index: 1;
+            font-family: 'Montserrat', sans-serif; /* Apply Montserrat font */
+        }
+        .header h1 {
+            font-size: 36px; /* Increased size */
+            font-weight: bold; /* Make it bold */
+            margin: 0; /* Ensure no extra spacing */
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+        .content h1 {
+            font-size: 48px;
+            font-weight: 400;
+            margin: 0;
+            padding: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Slight shadow for readability */
+        }
+        .footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 20px;
+            font-weight: 400;
+            z-index: 1;
+        }
+        .footer p {
+            margin: 10px 0;
+        }
+        .footer .copyright {
+            font-size: 14px;
+            color: #cccccc;
+            text-align: left; /* Align copyright to the left */
+        }
+        /* Style for the audio controls button */
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+        .audio-controls audio {
+            width: 150px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay muted loop>
+        <source src="/home/xavious/Documents/Project/Teaser/Teaser.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+    <div class="header">
+        <h1>INTELLIWISE ACADEMY</h1>
+    </div>
+    <div class="content">
+        <h1>Launching Soon</h1>
+    </div>
+    <div class="footer">
+        <h1>Keep Watching This Space</h1>
+        <h4 class="copyright">Copyright © 2025 Intelliwise Academy - All Rights Reserved.</h4>
+    </div>
+    <!-- Audio controls as a floating button -->
+    <div class="audio-controls">
+        <audio controls>
+            <source src="/home/xavious/Documents/Project/Teaser/teaser_audio.mpeg" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</body>
+</html>
